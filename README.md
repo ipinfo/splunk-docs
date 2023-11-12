@@ -1,5 +1,4 @@
-# Splunk Installation & Configuration
-# IPInfo App for Splunk
+# IPinfo Splunk App Installation & Configuration
 
 **App Version**: 8.6.0 ([see CHANGELOG here](./changelog.md))
 
@@ -9,26 +8,24 @@
 
 **Latest Update Date**: Nov 7 2023
 
-# Supported OS
+# Supported OSes
 
 All Splunk supported OS (Windows, Linux, Mac)
 
 Ref: [https://www.splunk.com/en_us/download/splunk-enterprise.html](https://www.splunk.com/en_us/download/splunk-enterprise.html)
 
-# Supported Splunk
+# Supported Splunk Version
 
 | Splunk |
 | --- |
 | Splunk 9.0.X |
 | Splunk 9.1.X |
 
-# IPInfo App for Splunk
+# Introduction
 
-IPInfo App for Splunk provides an Integration between IPInfo API and Splunk. This app adds *ipinfo* command to Splunk, which uses IPINFO API engine to lookup information for a given IP. MMDB Download is also available and supports all features of *ipinfo* command.
+The IPinfo app provides an integration between IPinfo’s API & DB products and Splunk. This app adds the `ipinfo` command to Splunk, which uses IPinfo data via the API or DBs to lookup IP information for a given IP address.
 
-NOTE: MMDB is downloaded in /lookups section of app directory. And does not overwrite splunk’s default MMDB.
-
-# Install the App
+# Installation
 
 **NOTE**: There are multiple ways of deploying apps to Splunk environment, in this document we’ll be referring installation via CLI (Command Line Interface)
 
@@ -179,11 +176,11 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 
 ![image19.png](image19.png)
 
-# Accessing The App
+# Usage
 
 ![Screenshot from 2023-11-07 10-47-14-fotor-20231107111221.png](Screenshot_from_2023-11-07_10-47-14-fotor-20231107111221.png)
 
-# Fields
+## Fields
 
 | Data Type | Fields Included |
 | --- | --- |
@@ -195,7 +192,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | Domains |  total_domains, domains |
 | Abuse | abuse_address, abuse_country, abuse_name, abuse_email, abuse_network, abuse_phone |
 
-# Examples
+## Examples
 
 **NOTE**: You can add two or more flags in single search query.
 
@@ -206,7 +203,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP
 ```
 
-## `ipinfo`
+### `ipinfo`
 
 ```
 | makeresults count=2000
@@ -215,7 +212,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP
 ```
 
-## `ipinfo` (Multi)
+### `ipinfo` (Multi)
 
 ```
 | makeresults count=100
@@ -225,7 +222,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo SRCIP DESTIP
 ```
 
-## `ipinfo` (prefix)
+### `ipinfo` (prefix)
 
 ```
 | makeresults count=100
@@ -234,7 +231,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo prefix=true SRCIP
 ```
 
-## `ipinfo` (privacy)
+### `ipinfo` (privacy)
 
 ```
 | makeresults 
@@ -242,7 +239,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP privacy=true
 ```
 
-## `ipinfo` (asn)
+### `ipinfo` (asn)
 
 ```
 | makeresults 
@@ -250,7 +247,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP asn=true
 ```
 
-## `ipinfo` (company)
+### `ipinfo` (company)
 
 ```
 | makeresults 
@@ -258,7 +255,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP company=true
 ```
 
-## `ipinfo` (abuse)
+### `ipinfo` (abuse)
 
 ```
 | makeresults 
@@ -266,7 +263,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP abuse=true
 ```
 
-## `ipinfo` (domains)
+### `ipinfo` (domains)
 
 ```
 | makeresults 
@@ -274,7 +271,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP domains=true
 ```
 
-## `ipinfo` (carrier)
+### `ipinfo` (carrier)
 
 ```
 | makeresults 
@@ -282,7 +279,7 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP carrier=true
 ```
 
-## `ipinfo` (alltypes)
+### `ipinfo` (alltypes)
 
 ```
 | makeresults 
@@ -290,43 +287,43 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP alltypes=true
 ```
 
-# Dashboard
+## Dashboard
 
 **NOTE**: In instances where subscription data is unavailable for a particular IP or if no subscription is present, an upgrade image will be displayed.
 
-## Location Details Dashboard View
+### Location Details Dashboard View
 
 ![Screenshot from 2023-11-07 11-33-51.png](Screenshot_from_2023-11-07_11-33-51.png)
 
-## ASN Details Dashboard View
+### ASN Details Dashboard View
 
 ![Screenshot from 2023-11-07 11-35-12.png](Screenshot_from_2023-11-07_11-35-12.png)
 
-## Company Details Dashboard View
+### Company Details Dashboard View
 
 ![Screenshot from 2023-11-07 11-36-33.png](Screenshot_from_2023-11-07_11-36-33.png)
 
-## Domain Details Dashboard View
+### Domain Details Dashboard View
 
 ![Screenshot from 2023-11-07 11-39-31.png](Screenshot_from_2023-11-07_11-39-31.png)
 
-## Privacy Details Dashboard View
+### Privacy Details Dashboard View
 
 ![Screenshot from 2023-11-07 11-41-13.png](Screenshot_from_2023-11-07_11-41-13.png)
 
-## Abuse Details Dashboard View
+### Abuse Details Dashboard View
 
 ![Screenshot from 2023-11-07 11-42-49.png](Screenshot_from_2023-11-07_11-42-49.png)
 
-## Carrier Details Dashboard View
+### Carrier Details Dashboard View
 
 ![Screenshot from 2023-11-07 11-29-32.png](Screenshot_from_2023-11-07_11-29-32.png)
 
-# Workflow Action
+## Workflow Action
 
 From version 5.3.1, we have added a new workflow actions in Splunk which will give you option to fetch details of IP from IPInfo by single click. It will work when fieldname is **ip OR *_ip** like **ip,dest_ip,src_ip** etc**.**
 
-## Example
+### Example
 
 ![Untitled](Untitled%204.png)
 
