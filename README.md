@@ -1,6 +1,6 @@
 # IPinfo Splunk App Installation & Configuration
 
-**App Version**: 8.6.0 ([see CHANGELOG here](./changelog.md))
+**App Version**: 8.6.0 (see [CHANGELOG](./CHANGELOG.md))
 
 **Author**: IPinfo
 
