@@ -10,7 +10,7 @@
 
 # Supported OS
 
-All Splunk supported OS (Windows, Linux, Mac)
+All Splunk supported OSes (Windows, Linux, Mac)
 
 Ref: [https://www.splunk.com/en_us/download/splunk-enterprise.html](https://www.splunk.com/en_us/download/splunk-enterprise.html)
 
@@ -33,9 +33,7 @@ The IPinfo app provides an integration between IPinfo’s API & DB products and 
 
 Single standalone Splunk Enterprise Installation on Windows/*NIX
 
-![image1.png](image1.png)
-
-![image2.jpg](image2.jpg)
+![Case_1](assets/Case_1.png)
 
 1. **Unzip ipinfo_app.spl**
 2. **Copy** the unzipped directory **ipinfo_app** to **$SPLUNK_HOME/etc/apps/**
@@ -45,9 +43,7 @@ Single standalone Splunk Enterprise Installation on Windows/*NIX
 
 Single Indexer Single Search head and Single forwarder (Heavy or Universal) and Deployment server
 
-![image1.png](image1.png)
-
-![Untitled](Untitled.png)
+![Case_2](assets/Case_2.png)
 
 1. **Unzip ipinfo_app.spl**
 2. **Copy** the unzipped directory **ipinfo_app** to deployment server in the following location
@@ -68,15 +64,7 @@ Single Indexer Single Search head and Single forwarder (Heavy or Universal) and 
 
 Multiple non-clustered Indexers, Multiple non-clustered SearchHeads, Forwarder(Heavy or Universal) and Deployment server
 
-![image1.png](image1.png)
-
-![image1.png](image1.png)
-
-![Untitled](Untitled%201.png)
-
-![image8.jpg](image8.jpg)
-
-![image7.jpg](image7.jpg)
+![Case_3](assets/Case_3.png)
 
 1. **Unzip ipinfo_app.spl**
 2. **Copy** the unzipped directory **ipinfo_app** to deployment server in the following location **$SPLUNK_HOME/etc/deployment-apps/**
@@ -94,9 +82,7 @@ Multiple non-clustered Indexers, Multiple non-clustered SearchHeads, Forwarder(H
 
 Single Site clustered Indexer, Clustered Search heads and Forwarder (Heavy or Universal).
 
-![Untitled](Untitled%202.png)
-
-![Untitled](Untitled%203.png)
+![Case_4](assets/Case_4.png)
 
 1. **Unzip ipinfo_app.spl**
 2. **Copy** **ipinfo_app** to Deployer server in the following location **$SPLUNK_HOME/etc/shcluster/apps/**
@@ -111,15 +97,15 @@ Single Site clustered Indexer, Clustered Search heads and Forwarder (Heavy or Un
 
 1. On the Splunk Home Page, Click on “Manage”
     
-![SS1.png](SS1.png)
+![Manage](assets/Manage.png)
     
 2. On the Manage Apps page, Click on “Install app from file”
     
-![SS2.png](SS2.png)
+![Install_App_From_File.png](assets/Install_App_From_File.png)
     
 3. Select path for IPINFO Splunk app .spl file and Click “Upload”
     
-![SS3.png](SS3.png)
+![Upload](assets/Upload.png)
     
 4. It is good practice to restart the Splunk, please restart
 
@@ -129,13 +115,13 @@ Single Site clustered Indexer, Clustered Search heads and Forwarder (Heavy or Un
 2. It will list out all the installed application and their configuration option.
 3. Look for ‘IPINFO and click on the ‘Set-Up’ link to configure the add on.
 
-![SS4.png](SS4.png)
+![Manage_Set-Up](assets/Manage_Set-Up.png)
 
 ## API Configuration
 
 When configuring the "Rest API" option, the TOKEN field is mandatory, serving as a crucial authentication element for accessing API resources. In contrast, all proxy-related fields are optional, providing flexibility for users who may or may not require proxy settings.
 
-![Screenshot from 2023-11-07 10-45-27.png](Screenshot_from_2023-11-07_10-45-27.png)
+![Setup_Page_Rest_API](assets/Setup_Page_Rest_API.png)
 
 ## MMDB Configuration
 
@@ -147,13 +133,13 @@ When configuring the `MMDB` option:
 - All Proxy related fields will be optional fields
 - **Bearer Token** and “**Download MMDB on Each Search Head**” will not use for Standalone Search Head.
     
-![Screenshot from 2023-11-07 10-45-57.png](Screenshot_from_2023-11-07_10-45-57.png)
+![Setup_Page_MMDB](assets/Setup_Page_MMDB.png)
     
 **NOTE**: MMDB is downloaded in /lookups section of app directory. And does not overwrite splunk’s default MMDB.
 
 ### **Pro configurations**
 
-![image18.png](image18.png)
+![Pro_Configuration](assets/Pro_Configuration.png)
 
 **NOTE**: Do not change the default settings in above section on setup page, unless you know what you are upto.
 
@@ -174,11 +160,11 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 1. Go to Settings -> Tokens
 2. Click on “New Token” and provide necessary information. And when you click on Create. You will get token value. Just copy that and give as Bearer token in IPinfo.
 
-![image19.png](image19.png)
+![Bearer_Token](assets/Bearer_Token.png)
 
 # Usage
 
-![Screenshot from 2023-11-07 10-47-14-fotor-20231107111221.png](Screenshot_from_2023-11-07_10-47-14-fotor-20231107111221.png)
+![Usage](assets/Usage.png)
 
 ## Fields
 
@@ -293,31 +279,31 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 
 ### Location Details Dashboard View
 
-![Screenshot from 2023-11-07 11-33-51.png](Screenshot_from_2023-11-07_11-33-51.png)
+![Location_Details_Dashboard_View](assets/Location_Details_Dashboard_View.png)
 
 ### ASN Details Dashboard View
 
-![Screenshot from 2023-11-07 11-35-12.png](Screenshot_from_2023-11-07_11-35-12.png)
+![ASN_Details_Dashboard_View](assets/ASN_Details_Dashboard_View.png)
 
 ### Company Details Dashboard View
 
-![Screenshot from 2023-11-07 11-36-33.png](Screenshot_from_2023-11-07_11-36-33.png)
+![Company_Details_Dashboard_View](assets/Company_Details_Dashboard_View.png)
 
 ### Domain Details Dashboard View
 
-![Screenshot from 2023-11-07 11-39-31.png](Screenshot_from_2023-11-07_11-39-31.png)
+![Domain_Details_Dashboard_View](assets/Domain_Details_Dashboard_View.png)
 
 ### Privacy Details Dashboard View
 
-![Screenshot from 2023-11-07 11-41-13.png](Screenshot_from_2023-11-07_11-41-13.png)
+![Privacy_Details_Dashboard_View](assets/Privacy_Details_Dashboard_View.png)
 
 ### Abuse Details Dashboard View
 
-![Screenshot from 2023-11-07 11-42-49.png](Screenshot_from_2023-11-07_11-42-49.png)
+![Abuse_Details_Dashboard_View](assets/Abuse_Details_Dashboard_View.png)
 
 ### Carrier Details Dashboard View
 
-![Screenshot from 2023-11-07 11-29-32.png](Screenshot_from_2023-11-07_11-29-32.png)
+![Carrier_Details_Dashboard_View](assets/Carrier_Details_Dashboard_View.png)
 
 ## Workflow Action
 
@@ -325,6 +311,6 @@ From version 5.3.1, we have added a new workflow actions in Splunk which will gi
 
 ### Example
 
-![Untitled](Untitled%204.png)
+![Workflow_Action](assets/Workflow_Action.png)
 
-![Screenshot from 2023-11-07 11-28-11.png](Screenshot_from_2023-11-07_11-28-11.png)
+![Search_Page](assets/Search_Page.png)
