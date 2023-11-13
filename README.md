@@ -8,7 +8,7 @@
 
 **Latest Update Date**: Nov 7 2023
 
-# Supported OSes
+# Supported OS
 
 All Splunk supported OS (Windows, Linux, Mac)
 
@@ -125,7 +125,7 @@ Single Site clustered Indexer, Clustered Search heads and Forwarder (Heavy or Un
 
 # Configuration
 
-1. After Installation and restart, login to the Splunk web and go to ‘Manage Apps’
+1. After Installation and restart, login to the Splunk web and go to ‘Manage’
 2. It will list out all the installed application and their configuration option.
 3. Look for ‘IPINFO and click on the ‘Set-Up’ link to configure the add on.
 
