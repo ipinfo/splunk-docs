@@ -88,9 +88,11 @@ Single Site clustered Indexer, Clustered Search heads and Forwarder (Heavy or Un
 2. **Copy** **ipinfo_app** to Deployer server in the following location **$SPLUNK_HOME/etc/shcluster/apps/**
 3. **Open CLI** on Deployer and deploy the app on Search Head Cluster using following command
     
-    **./splunk apply shcluster-bundle -target <URI>:<management_port> -auth**
+    ```
+    ./splunk apply shcluster-bundle -target <URI>:<management_port> -auth
     
-    **<username>:<password>**
+    <username>:<password>
+    ```
     
 
 ## Case 5: Standalone Installation (WEB)
