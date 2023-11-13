@@ -8,9 +8,9 @@
 
 **Latest Update Date**: Nov 7 2023
 
-# Supported OS
+# Supported OSes
 
-All Splunk supported OSes (Windows, Linux, Mac)
+All Splunk supported OS (Windows, Linux, Mac)
 
 Ref: [https://www.splunk.com/en_us/download/splunk-enterprise.html](https://www.splunk.com/en_us/download/splunk-enterprise.html)
 
