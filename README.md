@@ -275,6 +275,49 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP alltypes=true
 ```
 
+### `ipinfo` (alltypes)
+
+```
+| makeresults 
+| eval IP="1.0.178.0"
+| ipinfo IP alltypes=true
+```
+
+### `ipinfobatch`
+
+```
+| ipinfobatch ip="197.94.71.228
+,197.94.71.227
+,197.94.71.221
+,197.94.71.226
+,197.94.71.225
+,197.94.71.22"
+```
+
+### `privacyinfo`
+
+```
+| makeresults 
+| eval IP="23.24.240.0" 
+| privacyinfo IP
+```
+
+### `rangeinfo`
+
+```
+| makeresults 
+| eval domain="comcast.net" 
+| rangeinfo domain
+```
+
+### `domaininfo`
+
+```
+| makeresults 
+| eval IP="1.1.1.1" 
+| domaininfo IP
+```
+
 ## Dashboard
 
 **NOTE**: In instances where subscription data is unavailable for a particular IP or if no subscription is present, an upgrade image will be displayed.
