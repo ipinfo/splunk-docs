@@ -275,14 +275,6 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP alltypes=true
 ```
 
-### `ipinfo` (alltypes)
-
-```
-| makeresults 
-| eval IP="1.0.178.0"
-| ipinfo IP alltypes=true
-```
-
 ### `ipinfobatch`
 
 ```
