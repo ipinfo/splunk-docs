@@ -1,12 +1,12 @@
 # IPinfo Splunk App Installation & Configuration
 
-**App Version**: 8.6.0 (see [CHANGELOG](./CHANGELOG.md))
+**App Version**: 9.0.0beta1 (see [CHANGELOG](./CHANGELOG.md))
 
 **Author**: IPinfo
 
 **Description**: Installation and Configuration Document for IPInfo App for Splunk
 
-**Latest Update Date**: Nov 7 2023
+**Latest Update Date**: April 4 2024
 
 # Supported OSes
 
@@ -116,69 +116,70 @@ Single Site clustered Indexer, Clustered Search heads and Forwarder (Heavy or Un
 1. After Installation and restart, login to the Splunk web and go to ‘Manage’
 2. It will list out all the installed application and their configuration option.
 3. Look for ‘IPINFO and click on the ‘Set-Up’ link to configure the add on.
+4. Make Sure to restart Splunk Instance after setting up the app. In the case of the Search Head Cluster, each search needs to be restarted or a rolling restart must be initiated to make all changes work properly.
 
 ![Manage_Set-Up](assets/Manage_Set-Up.png)
 
 ## API Configuration
 
-When configuring the "Rest API" option, the TOKEN field is mandatory, serving as a crucial authentication element for accessing API resources. In contrast, all proxy-related fields are optional, providing flexibility for users who may or may not require proxy settings.
+When setting up the "Rest API" option, the TOKEN field is required as it serves as a vital authentication element for accessing API resources. After pressing the Next button, the second step,  **Source Setting**(related to MMDB) will be skipped. In contrast, all proxy-related fields are optional, providing flexibility for users who may or may not require proxy settings.
 
-![Setup_Page_Rest_API](assets/Setup_Page_Rest_API.png)
+![Data_Source_API](assets/Data_Source_API.png)
+
+![Proxy_Setting](assets/Proxy_Setting.png)
+
+### Summary Page
+
+- With Proxy Setting:
+![Summary_API_Proxy](assets/Summary_API_Proxy.png)
+
+- Without Proxy Setting:
+![Summary_API_Proxy_Skipped](assets/Summary_API_Proxy_Skipped.png)
 
 ## MMDB Configuration
 
 When configuring the `MMDB` option:
 
-- **TOKEN** and **MMDB** related fields will be mandatory fields
-- Bearer Token is optional. But it will be used when trying to download MMDB using **Manual Refresh** Dashboard and/or using “**Download MMDB on Each Search Head**” as “**No”**.
-- Set “**Download MMDB on Each Search Head**” as “**No**” used when there is a search head cluster and you want to download MMDB from ipinfo.io on only one Search and sync on other search heads and in this case Bearer token is compulsory. And set “**Yes**” when you each Search Head to Download MMDB from IPinfo.io. Recommended “**Yes**”
-- All Proxy related fields will be optional fields
-- **Bearer Token** and “**Download MMDB on Each Search Head**” will not use for Standalone Search Head.
+- **Data Source:** token field will be mandatory field
+![Data_Source_MMDB](assets/Data_Source_MMDB.png)
+
+- **Source Setting:** It has the option to enable downloading of available MMDBs at different intervals Daily, Weekly, and Monthly.
+![Source_Setting](assets/Source_Setting.png)
+
+- **Advance Options:** Source Setting page have some advance options they will not use for Standalone Splunk Instance.
+![Advance_Options](assets/Advance_Options.png)
+
+- Set “**Replicate on search heads**” as “**Internally**” used when there is a search head cluster and you want to download MMDB from ipinfo.io on only one Search and sync on other search heads. And set “**Externally**” when you each Search Head to Download MMDB from IPinfo.io. Internally will be a bit slow as compared to externally as it has to copy mmdbs to all search heads.
+
+- Setting "**Replicate database to indexers**" as **YES** will enable replication on MMDB bundle and also make bunch of changes in the code that will enable *ipinfo* to work in streaming more. This is expected to cause performance boost on the query at the expense on increase in bundle size. This setting is applicable if you using ipinfo app on splunk search head cluster and you have indexer cluster.
+
+- **Proxy Setting:** All Proxy related fields will be optional fields
+![Proxy_Setting](assets/Proxy_Setting.png)
     
-![Setup_Page_MMDB](assets/Setup_Page_MMDB.png)
-    
+### Summary Page
+![Summary_MMDB](assets/Summary_MMDB.png)
+ 
+
 **NOTE**: MMDB is downloaded in /lookups section of app directory. And does not overwrite splunk’s default MMDB.
 
-### **Pro configurations**
-
-![Pro_Configuration](assets/Pro_Configuration.png)
-
-**NOTE**: Do not change the default settings in above section on setup page, unless you know what you are upto.
-
-### **Replicate MMDB on Indexers**
-
-When enabled **YES** will enable replication on MMDB bundle and also make bunch of changes in the code that will enable *ipinfo* to work in streaming more. This is expected to cause performance boost on the query at the expense on increase in bundle size.
-
-This setting is applicable if you using ipinfo app on splunk search head cluster and you have indexer cluster.
-
-### **Download MMDB on each Search Head**
-
-When disabled **NO** will need bearer token to be generated (refer next page) for one search head to download the MMDB files and then replicate on all the other searchheads automatically. This will reduce internet consumption by few gigs while downloading MMDB.
-
-This setting is applicable if you using ipinfo app on splunk search head cluster
-
-### **Steps to get Bearer Token**
-
-1. Go to Settings -> Tokens
-2. Click on “New Token” and provide necessary information. And when you click on Create. You will get token value. Just copy that and give as Bearer token in IPinfo.
-
-![Bearer_Token](assets/Bearer_Token.png)
-
 # Usage
-
 ![Usage](assets/Usage.png)
 
 ## Fields
 
 | Data Type | Fields Included |
 | --- | --- |
-| Location | ip, city, region, country, loc, org, postal, hostname |
+| Location | ip, city, country, lat, lon, postal, region, region_code, timezone, geoname_id |
+| Location Extended | ip, city, country, country_name, lat, lon, postal, radius, region, region_code, timezone, geoname_id  |
+| Location Aggregated | ip, city, country, lat, lon, postal, region, region_code, timezone, geoname_id |
 | ASN | asn_asn, asn_name, asn_domain, asn_route, asn_type |
 | Company | company_name, company_domain, company_type |
-| Carrier | carrier_name, carrier_mcc, carrier_mnc |
+| Carrier | carrier_name, carrier_mcc, carrier_mnc, carrier_cc, carrier_network |
 | Privacy | vpn, proxy, tor, hosting, relay, service |
+| Privacy Extended | anycast, census, census_port, device_activity, hosting, network, proxy, relay, tor, vpn, vpn_config, vpn_name, whois |
 | Domains |  total_domains, domains |
 | Abuse | abuse_address, abuse_country, abuse_name, abuse_email, abuse_network, abuse_phone |
+| Country ASN | country_asn_domain, country_asn_name, country_asn_asn, country_continent, country_continent_name, country_country, country_country_name |
 
 ## Examples
 
@@ -267,6 +268,14 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP carrier=true
 ```
 
+### `ipinfo` (country_asn)
+
+```
+| makeresults 
+| eval IP="1.0.178.0"
+| ipinfo IP country_asn=true
+```
+
 ### `ipinfo` (alltypes)
 
 ```
@@ -275,44 +284,47 @@ This setting is applicable if you using ipinfo app on splunk search head cluster
 | ipinfo IP alltypes=true
 ```
 
+### `ipinfo` (restapi)
+- To utilize API methods while configuring the MMDB setup.
+
+```
+| makeresults 
+| eval IP="1.0.178.0"
+| ipinfo IP restapi=true
+```
+
+### `ipinfo` (restapi with alltypes)
+
+```
+| makeresults 
+| eval IP="1.0.178.0"
+| ipinfo IP restapi=true alltypes=true
+```
+
 ## Dashboard
 
-**NOTE**: In instances where subscription data is unavailable for a particular IP or if no subscription is present, an upgrade image will be displayed.
+### Ipinfo Dashboard View
 
-### Location Details Dashboard View
+![Ipinfo_Dashboard_1](assets/Ipinfo_Dashboard_1.png)
 
-![Location_Details_Dashboard_View](assets/Location_Details_Dashboard_View.png)
+![Ipinfo_Dashboard_2](assets/Ipinfo_Dashboard_2.png)
 
-### ASN Details Dashboard View
+### Overview Dashboard View
 
-![ASN_Details_Dashboard_View](assets/ASN_Details_Dashboard_View.png)
+- When selected method is 'MMDB'
+![Overview_Dashboard_MMDB](assets/Overview_Dashboard_MMDB.png)
 
-### Company Details Dashboard View
+- When selected method is 'API'
+![Overview_Dashboard_API](assets/Overview_Dashboard_API.png)
 
-![Company_Details_Dashboard_View](assets/Company_Details_Dashboard_View.png)
+### Refresh Dashboard View
 
-### Domain Details Dashboard View
+- To force refresh MMDB file at the moment.
 
-![Domain_Details_Dashboard_View](assets/Domain_Details_Dashboard_View.png)
+![Refresh_Dashboard](assets/Refresh_Dashboard.png)
 
-### Privacy Details Dashboard View
+### Log Status Dashboard View
 
-![Privacy_Details_Dashboard_View](assets/Privacy_Details_Dashboard_View.png)
+![Log_Status_Dashboard](assets/Log_Status_Dashboard.png)
 
-### Abuse Details Dashboard View
 
-![Abuse_Details_Dashboard_View](assets/Abuse_Details_Dashboard_View.png)
-
-### Carrier Details Dashboard View
-
-![Carrier_Details_Dashboard_View](assets/Carrier_Details_Dashboard_View.png)
-
-## Workflow Action
-
-From version 5.3.1, we have added a new workflow actions in Splunk which will give you option to fetch details of IP from IPInfo by single click. It will work when fieldname is **ip OR *_ip** like **ip,dest_ip,src_ip** etc**.**
-
-### Example
-
-![Workflow_Action](assets/Workflow_Action.png)
-
-![Search_Page](assets/Search_Page.png)
