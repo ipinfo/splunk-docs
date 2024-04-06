@@ -1,5 +1,7 @@
 # IPinfo Splunk App Installation & Configuration
 
+**Note**: For users with ipinfo_app versions earlier than 8.9.1, please consult the documentation at [ipinfo Splunk Docs (8.9.1)](https://github.com/ipinfo/splunk-docs/tree/8.9.1).
+
 **App Version**: 9.0.0beta1 (see [CHANGELOG](./CHANGELOG.md))
 
 **Author**: IPinfo
