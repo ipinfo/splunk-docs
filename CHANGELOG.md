@@ -1,11 +1,19 @@
 # Changelog
 
+## 9.0.0beta1
+
+- Revamped the entire app for better performance and user experience.
+- Added new flag 'restapi' and 'country_asn' for enhanced functionality.
+- Included a new setup page to simplify initial configuration and settings.
+- Introduced a new dashboard 'Overview' to provide a comprehensive summary of API and MMDB status.
+- Implemented a new dashboard 'Log Status' section to monitor log activities more effectively.
+- Added a new dashboard 'Force Refresh' for immediate MMDB updates.
+
 ## 8.9.1
 
 - Iplocation Extended MMDB is added an option for MMDB download use cases.
 - Iplocation Aggregated MMDB is added an option for MMDB download use cases.
 - Privacy Extended MMDB is added an option for MMDB download use cases.
-
 
 ## 8.8.0
 
