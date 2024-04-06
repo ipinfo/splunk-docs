@@ -1,12 +1,12 @@
 # IPinfo Splunk App Installation & Configuration
 
-**App Version**: 8.6.0 (see [CHANGELOG](./CHANGELOG.md))
+**App Version**: 8.9.1 (see [CHANGELOG](./CHANGELOG.md))
 
 **Author**: IPinfo
 
 **Description**: Installation and Configuration Document for IPInfo App for Splunk
 
-**Latest Update Date**: Nov 7 2023
+**Latest Update Date**: April 1 2023
 
 # Supported OSes
 
