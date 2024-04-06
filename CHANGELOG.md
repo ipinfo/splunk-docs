@@ -1,5 +1,23 @@
 # Changelog
 
+## 8.9.1
+
+- Iplocation Extended MMDB is added an option for MMDB download use cases.
+- Iplocation Aggregated MMDB is added an option for MMDB download use cases.
+- Privacy Extended MMDB is added an option for MMDB download use cases.
+
+
+## 8.8.0
+
+- Abuse MMDB is added an option for MMDB download use cases.
+- Submit button during setup cannot be multi-clicked which previously caused simultaneous conflicting config-update requests to be fired.
+
+## 8.7.0
+
+- Fixed an issue where the setup page was not properly saving.
+- Fixed an issue with warnings popping up when opening some UIs due to CSP issues.
+- Removed unnecessary splunktalib code.
+
 ## 8.6.0
 
 - Upgraded Splunk SDK version from 1.6.16 to 1.7.4.
