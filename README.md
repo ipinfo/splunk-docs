@@ -2,7 +2,7 @@
 
 **Note**: For users using any of the `8.x.y` versions (e.g. 8.9.1 or earlier), please consult the documentation at [IPinfo Splunk Docs (8.9.1)](https://github.com/ipinfo/splunk-docs/tree/8.9.1).
 
-**App Version**: 9.0.0beta1 (see [CHANGELOG](./CHANGELOG.md))
+**App Version**: 9.0.0beta2 (see [CHANGELOG](./CHANGELOG.md))
 
 **Author**: IPinfo
 
@@ -173,6 +173,7 @@ When configuring the `MMDB` option:
 | --- | --- |
 | Location | ip, city, country, lat, lon, postal, region, region_code, timezone, geoname_id |
 | Location Extended | ip, city, country, country_name, lat, lon, postal, radius, region, region_code, timezone, geoname_id  |
+| Location Extended Labels | ip, city, city_confidence, country, country_confidence, country_name, lat, lon, postal, radius, region, region_confidence, region_code, timezone, geoname_id  |
 | Location Aggregated | ip, city, country, lat, lon, postal, region, region_code, timezone, geoname_id |
 | ASN | asn_asn, asn_name, asn_domain, asn_route, asn_type |
 | Company | company_name, company_domain, company_type |
