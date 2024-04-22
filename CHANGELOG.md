@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.0beta2
+
+- Iplocation Extended Labels MMDB is added an option for MMDB download use cases.
+
 ## 9.0.0beta1
 
 - Revamped the entire app for better performance and user experience.
