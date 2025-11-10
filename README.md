@@ -2,13 +2,11 @@
 
 **Note**: For users using any of the `8.x.y` versions (e.g. 8.9.1 or earlier), please consult the documentation at [IPinfo Splunk Docs (8.9.1)](https://github.com/ipinfo/splunk-docs/tree/8.9.1).
 
-**App Version**: 9.0.0beta2 (see [CHANGELOG](./CHANGELOG.md))
+**App Version**: 9.3.0 (see [CHANGELOG](./CHANGELOG.md))
 
 **Author**: IPinfo
 
 **Description**: Installation and Configuration Document for IPInfo App for Splunk
-
-**Latest Update Date**: April 4 2024
 
 # Supported OSes
 
@@ -22,6 +20,9 @@ Ref: [https://www.splunk.com/en_us/download/splunk-enterprise.html](https://www.
 | ------------ |
 | Splunk 9.0.X |
 | Splunk 9.1.X |
+| Splunk 9.2.X |
+| Splunk 9.3.X |
+| Splunk 9.4.X |
 
 # Introduction
 
@@ -157,6 +158,14 @@ When configuring the `MMDB` option:
 - **Proxy Setting:** All Proxy related fields will be optional fields
   ![Proxy_Setting](assets/Proxy_Setting.png)
 
+## Replication issues
+
+If you set "**Replicate on search heads**" as "**Internally**" or "**Replicate database to indexers**" as "**YES**" you might face some issues with replication bundles when using some of the bigger MMDBs, like the Plus Bundle that is 4.45GB.
+
+If you encounter replication issues, you can either increase the `maxBundleSize` setting or configure "**Replicate on search heads**" to use "**Externally**".
+
+By default, Splunk limits replication bundle sizes to 2GB. You can increase this limit by configuring the `maxBundleSize` parameter in the `replicationSettings` stanza. For more information, refer to the [official Splunk documentation](https://help.splunk.com/en/data-management/splunk-enterprise-admin-manual/9.4/configuration-file-reference/9.4.5-configuration-file-reference/distsearch.conf).
+
 ### Summary Page
 
 ![Summary_MMDB](assets/Summary_MMDB.png)
@@ -165,28 +174,148 @@ When configuring the `MMDB` option:
 
 # Usage
 
-![Usage](assets/Usage.png)
-
 ## Fields
 
-| Data Type                | Fields Included                                                                                                                                              |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Location                 | ip, city, country, lat, lon, postal, region, region_code, timezone, geoname_id                                                                               |
-| Location Extended        | ip, city, country, country_name, lat, lon, postal, radius, region, region_code, timezone, geoname_id                                                         |
-| Location Extended Labels | ip, city, city_confidence, country, country_confidence, country_name, lat, lon, postal, radius, region, region_confidence, region_code, timezone, geoname_id |
-| Location Aggregated      | ip, city, country, lat, lon, postal, region, region_code, timezone, geoname_id                                                                               |
-| ASN                      | asn_asn, asn_name, asn_domain, asn_route, asn_type                                                                                                           |
-| Company                  | company_name, company_domain, company_type                                                                                                                   |
-| Carrier                  | carrier_name, carrier_mcc, carrier_mnc, carrier_cc, carrier_network                                                                                          |
-| Privacy                  | vpn, proxy, tor, hosting, relay, service                                                                                                                     |
-| Privacy Extended         | anycast, census, census_port, device_activity, hosting, network, proxy, relay, tor, vpn, vpn_config, vpn_name, whois                                         |
-| Domains                  | total_domains, domains                                                                                                                                       |
-| Abuse                    | abuse_address, abuse_country, abuse_name, abuse_email, abuse_network, abuse_phone                                                                            |
-| Country ASN              | country_asn_domain, country_asn_name, country_asn_asn, country_continent, country_continent_name, country_country, country_country_name                      |
+| Data Type                | Fields Included                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Lite Bundle              | ip, asn, as_name, as_domain, country_code, country, continent_code, continent                                                                                                                                                                                                                                                                                 |
+| Core Bundle              | ip, city, region, region_code, country, country_code, continent, continent_code, latitude, longitude, timezone, postal_code, asn, as_name, as_domain, as_type, is_anonymous, is_anycast, is_hosting, is_mobile, is_satellite                                                                                                                                  |
+| Plus Bundle              | ip, city, region, region_code, country, country_code, continent, continent_code, latitude, longitude, timezone, postal_code, dma_code, geoname_id, radius, geo_changed, asn, as_name, as_domain, as_type, as_changed, carrier_name, mcc, mnc, is_anonymous, is_anycast, is_hosting, is_mobile, is_satellite, is_proxy, is_relay, is_tor, is_vpn, privacy_name |
+| Location                 | ip, city, country, lat, lon, postal, region, region_code, timezone, geoname_id                                                                                                                                                                                                                                                                                |
+| Location Extended        | ip, city, country, country_name, lat, lon, postal, radius, region, region_code, timezone, geoname_id                                                                                                                                                                                                                                                          |
+| Location Extended Labels | ip, city, city_confidence, country, country_confidence, country_name, lat, lon, postal, radius, region, region_confidence, region_code, timezone, geoname_id                                                                                                                                                                                                  |
+| Location Aggregated      | ip, city, country, lat, lon, postal, region, region_code, timezone, geoname_id                                                                                                                                                                                                                                                                                |
+| ASN                      | asn_asn, asn_name, asn_domain, asn_route, asn_type                                                                                                                                                                                                                                                                                                            |
+| Company                  | company_name, company_domain, company_type                                                                                                                                                                                                                                                                                                                    |
+| Carrier                  | carrier_name, carrier_mcc, carrier_mnc, carrier_cc, carrier_network                                                                                                                                                                                                                                                                                           |
+| Privacy                  | vpn, proxy, tor, hosting, relay, service                                                                                                                                                                                                                                                                                                                      |
+| Privacy Extended         | anycast, census, census_port, device_activity, hosting, network, proxy, relay, tor, vpn, vpn_config, vpn_name, whois                                                                                                                                                                                                                                          |
+| Domains                  | total_domains, domains                                                                                                                                                                                                                                                                                                                                        |
+| Abuse                    | abuse_address, abuse_country, abuse_name, abuse_email, abuse_network, abuse_phone                                                                                                                                                                                                                                                                             |
+| Country ASN              | country_asn_domain, country_asn_name, country_asn_asn, country_continent, country_continent_name, country_country, country_country_name                                                                                                                                                                                                                       |
+| Residential Proxy        | resproxy_last_seen, resproxy_percent_days_seen, resproxy_service                                                                                                                                                                                                                                                                                              |
 
 ## Examples
 
 **NOTE**: You can add two or more flags in single search query.
+
+## Bundles
+
+### Lite Bundle
+
+### `ipinfolite`
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfolite IP
+```
+
+### `ipinfolite` (prefix)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfolite IP prefix=true
+```
+
+### `ipinfolite` (custom prefix)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfolite IP prefix="my_prefix_"
+```
+
+### `ipinfolite` (restapi)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfolite IP restapi=true
+```
+
+### Core Bundle
+
+### `ipinfocore`
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfocore IP
+```
+
+### `ipinfocore` (prefix)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfocore IP prefix=true
+```
+
+### `ipinfocore` (custom prefix)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfocore IP prefix="my_prefix_"
+```
+
+### `ipinfocore` (restapi)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfocore IP restapi=true
+```
+
+### Plus Bundle
+
+### `ipinfoplus`
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfoplus IP
+```
+
+### `ipinfoplus` (prefix)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfoplus IP prefix=true
+```
+
+### `ipinfoplus` (custom prefix)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfoplus IP prefix="my_prefix_"
+```
+
+### `ipinfoplus` (restapi)
+
+```
+| makeresults count=100
+| eval IP1=random()%192, IP2=random()%210, IP3=random()%230, IP4=random()%192, IP='IP1'.".".'IP2'.".".'IP3'.".".'IP4'
+| table _time IP
+| ipinfoplus IP restapi=true
+```
+
+## Other Databases
 
 ```
 | makeresults 1
