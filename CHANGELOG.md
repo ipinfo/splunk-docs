@@ -1,5 +1,60 @@
 # Changelog
 
+## 9.3.0
+
+- Added support for Plus Bundle MMDB.
+- Added support for Core Bundle MMDB.
+- Added support for Lite Bundle MMDB.
+- Added support for Residential Proxy MMDBs with 7 and 30 days lookback.
+- Fixed MMDB usage graph not displaying data correctly.
+- Fixed ASN MMDB data parsing issues.
+- Updated IPinfo logo and refreshed UI color scheme.
+- Improved logging for better monitoring and troubleshooting.
+- Unset `shclustering.deployer_push_mode = full` setting from `server.conf`, now the default value `merge_to_default` is used if not explicitly set by the user
+- Unset `replicationSettings.maxBundleSize = 2048` from `distsearch.conf`, now the default value `2048` is used if not explicitly set by the user
+
+## 9.2.4
+
+- Fixed Residential Proxy setup settings not being saved correctly.
+- Fixed MMDB names displayed in setup and refresh pages.
+
+## 9.2.3
+
+- Added `ipinforesproxy` command for querying Residential Proxy information.
+- Added Residential Proxy data support to `ipinfo` command.
+- Added Residential Proxy MMDB download capability.
+- Updated dashboard to display Residential Proxy data.
+
+## 9.2.2
+
+- Fixed replication issue in distributed Splunk environments.
+- Enhanced `ipinfo` command to accept multiple IP prefixes at once.
+
+## 9.2.1
+
+- Improved authentication and session management.
+
+## 9.2.0
+
+- Enhanced credential management and security.
+
+## 9.1.3
+
+- Added `mmdbdownloaddirect` command for direct MMDB downloads.
+- Improved Search Head Clustering support with better lookup preservation.
+- Enhanced authentication validation and debugging capabilities.
+
+## 9.1.0
+
+- Production ready release (Beta designation removed).
+- Fixed issues with clustered Splunk environments.
+- Added proxy configuration support.
+- Enhanced compatibility and stability.
+
+## 9.1.0beta1
+
+- Beta release with various improvements and bug fixes.
+
 ## 9.0.0beta2
 
 - Iplocation Extended Labels MMDB is added an option for MMDB download use cases.
@@ -193,7 +248,7 @@
 ## 3.5.3
 
 - Added Support for New Lookup Commands: `privacyinfolookup`,
-`domaininfolookup` and `rangesinfolookup`.
+  `domaininfolookup` and `rangesinfolookup`.
 
 ## 3.4.11
 
@@ -224,4 +279,3 @@
 ## 1.0.0
 
 - Initial Version
-
