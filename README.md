@@ -1,3 +1,6 @@
+> [!WARNING]
+> This repository is now archived, up to date documentation can be found on [IPinfo official website](https://ipinfo.io/developers/splunk).
+
 # IPinfo Splunk App Installation & Configuration
 
 **Note**: For users using any of the `8.x.y` versions (e.g. 8.9.1 or earlier), please consult the documentation at [IPinfo Splunk Docs (8.9.1)](https://github.com/ipinfo/splunk-docs/tree/8.9.1).
